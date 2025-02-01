@@ -1,0 +1,77 @@
+#Wade Poltenovage
+#Last updated 1/23/2025
+#Dice roller back end, current issue looking to fix is someone trying to enter  a d-x indictating negative sides.
+# this doesnt do anything and is treated as a modifier instead but still probably something to prevent/patch
+
+import re
+import random
+
+def dice_reader(input_string):
+    # RegEx to read any combination of dice and modifiers
+    pattern = r'([+-]?\d*d\d+|[+-]\d+)'
+    dice_combinations = re.findall(pattern, input_string)
+
+    if not dice_combinations:
+        raise ValueError("Invalid input format. Use a format like '2d6+1d4+5'.")
+
+    # Initialize parsed dice array for output
+    parsed_dice = []
+    # Modifier for outside dice expressions
+    modifier = 0
+
+    for dice_combination in dice_combinations:
+        # Keeps dice appropriately formatted and reads them in
+        if 'd' in dice_combination:  # It's a dice expression
+            dice_match = re.match(r'([+-]?)(\d*)d(\d+)', dice_combination)
+            if not dice_match:
+                raise ValueError("Invalid dice expression: " + str(dice_combination))
+
+            sign = dice_match.group(1)  # Get the sign (+ or -)
+            count_str = dice_match.group(2)  # Number of dice (optional)
+            sides_str = dice_match.group(3)  # Number of sides
+            # Tracks the dice inputs aka how many and type
+            dice_count = int(sign + count_str) if count_str else (1 if sign != '-' else -1)
+            die_sides = int(sides_str)
+
+
+            parsed_dice.append((dice_count, die_sides))
+        else:  # It's a standalone modifier
+            modifier += int(dice_combination)  # Accumulate standalone modifiers
+
+    return parsed_dice, modifier
+
+def random_number_generator(dice_count, die_sides):
+    # Limits dice to rolling only up to 100 of one type of die at a time (up to d100)
+    if abs(dice_count) > 100:
+        raise ValueError("Count may be no more or less than 100 or -100.")
+    if die_sides > 100:
+        raise ValueError("Sides may range between 1 and 100.")
+    return [random.randint(1, die_sides) for _ in range(abs(dice_count))]
+
+
+def main():
+    user_input = (input("Please enter your roll and any and all modifiers: "))
+    try:
+        dice_list, applied_modifiers = dice_reader(user_input)
+        total = 0
+        all_rolls = []
+        for dice_count, die_sides in dice_list:
+            is_negative = dice_count < 0  # Check for negative dice count
+            rolls = random_number_generator(abs(dice_count), die_sides)
+
+            subtotal = sum(rolls) # Tallies dice so far
+            if is_negative:
+                subtotal = -subtotal  # Subtract the subtotal for negative dice counts
+            total += subtotal
+            all_rolls.extend(rolls)
+            print("Rolls for " +str(dice_count) + "d" + str(die_sides) + ":" + str(rolls) + "(Subtotal: " + str(subtotal)+ ")")
+        # The total result of all dice and modifiers
+        total += applied_modifiers
+        print("Applied Modifiers: " +str(applied_modifiers))
+        print("Final Total: " + str(total))
+    except ValueError as e:
+        print("Error: " + str(e))
+
+
+if __name__ == "__main__":
+    main()
