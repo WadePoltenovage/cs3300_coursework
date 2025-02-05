@@ -1,0 +1,75 @@
+import pygame
+
+pygame.init()
+
+class Board:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.board = [[0] * width for _ in range(height)]
+        self.left = 10
+        self.top = 10
+        self.cell_size = 50
+
+    def set_view(self, left, top, cell_size):
+        self.left = left
+        self.top = top
+        self.cell_size = cell_size
+
+    def render(self, screen):
+        for y in range(self.height):
+            for x in range(self.width):
+                pygame.draw.rect(screen, (255,255,255), (
+                    self.left + x * self.cell_size,
+                    self.top + y * self.cell_size,
+                    self.cell_size,
+                    self.cell_size), 1)
+
+class Object:
+    def __init__(self, x, y, width, height, name):
+        self.name = name
+        self.rect = pygame.Rect(x, y, width, height)
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, (128, 0, 128), self.rect)
+
+screen = pygame.display.set_mode((500, 500))
+
+board = Board(10, 10)
+
+objects = []
+for num in range(5):
+    obj = Object(50 + num * 60, 50, 50, 50, f"Object_{num}")
+    objects.append(obj)
+
+activeObj = None
+running = True
+
+while running:
+    screen.fill((0, 0, 0))
+    board.render(screen)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                for num, obj in enumerate(objects):
+                    if obj.rect.collidepoint(event.pos):
+                        activeObj = num
+
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 1:
+                activeObj = None
+
+        elif event.type == pygame.MOUSEMOTION:
+            if activeObj is not None:
+                objects[activeObj].rect.move_ip(event.rel)
+
+    for obj in objects:
+        obj.draw(screen)
+
+    pygame.display.flip()
+
+pygame.quit()
