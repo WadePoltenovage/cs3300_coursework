@@ -1,0 +1,15 @@
+Instructions:
+
+- Standard Uno with Jump-Ins (Same card can be played twice, explanation later)
+- First card in the center pile is always Blue-7. 
+- To play a card:
+	- Should always be typed as, for example: Blue-7 or Green-5 
+	- Special cards are as they appear in your text file
+	- Should always be typed as, for example: Yellow-Reverse or Red-Skip
+	- Wild +4 is Wild-+4
+	- No need to call Uno on last card
+- To draw a card you must type: Draw-Card
+
+Speaking of which, your hand is in a text in the project file. Each player must re-open
+the file after each turn for an updated version on the file. This is why we're including 
+jump-ins, the game is very slow without them. 
