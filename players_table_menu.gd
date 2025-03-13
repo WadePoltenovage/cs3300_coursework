@@ -1,0 +1,20 @@
+extends Control
+
+func _ready():
+	pass
+	
+func _process(_delta):
+	pass
+	
+func _on_open_table_pressed():
+	print("Opening Table")
+	get_tree().change_scene_to_file("res://Empty_Table.tscn")
+
+func _on_open_games_pressed():
+	print("Opening Games Menu")
+
+func _on_quit_table_pressed():
+	print("Quiting Players Table")
+	get_tree().quit()
+	
+	
