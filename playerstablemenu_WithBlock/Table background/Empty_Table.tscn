@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgqojixhck3a4"]
+
+[ext_resource type="Texture2D" uid="uid://beumyocm2h7li" path="res://Table background/Solid_white.png" id="1_4xj2f"]
+[ext_resource type="Texture2D" uid="uid://db5wa6ntu7va7" path="res://Table background/Solid_gray.png" id="2_cla2e"]
+[ext_resource type="Script" uid="uid://dscth6piqluox" path="res://Table background/tile_map.gd" id="3_4jnxs"]
+[ext_resource type="Script" uid="uid://ccw70884eaasr" path="res://Table background/object.gd" id="4_cla2e"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_6i2kq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xxfuv"]
+texture = ExtResource("1_4xj2f")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mou02"]
+texture = ExtResource("2_cla2e")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_t0xju"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_xxfuv")
+sources/1 = SubResource("TileSetAtlasSource_mou02")
+
+[node name="EmptyTable" type="Node2D"]
+metadata/_edit_vertical_guides_ = [-136.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(85, 85)
+texture = SubResource("ImageTexture_6i2kq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(570, 324)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_t0xju")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 65544, 0, 0, 65543, 0, 0, 65542, 0, 0, 65541, 0, 0, 65540, 0, 0, 65539, 0, 0, 65538, 0, 0, 65537, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 196616, 0, 0, 196615, 0, 0, 196614, 0, 0, 196613, 0, 0, 196612, 0, 0, 196611, 0, 0, 196610, 0, 0, 196609, 0, 0, 196608, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0)
+layer_1/name = "Layer1"
+script = ExtResource("3_4jnxs")
+
+[node name="Object" type="Sprite2D" parent="."]
+script = ExtResource("4_cla2e")
+
+[node name="Button" type="Button" parent="Object"]
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(16.3097, 15.9314)
+
+[connection signal="button_down" from="Object/Button" to="Object" method="_on_button_button_down"]
+[connection signal="button_up" from="Object/Button" to="Object" method="_on_button_button_up"]
