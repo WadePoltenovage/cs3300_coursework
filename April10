@@ -1,0 +1,8 @@
+implementing RESTful service
+need to implement an aws server that then can connect 
+to the individual game service for godot
+enet
+websocket
+webrtc
+
+look into officail networking demos
