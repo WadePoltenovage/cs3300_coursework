@@ -19,11 +19,8 @@ To run the project from inside the environment, navigate to the top right corner
 If you want to only run a scene, make sure to have one selected and click the clapboard icon in the top right:
 <img width="268" alt="image" src="https://github.com/user-attachments/assets/50c17f67-c9a4-4e47-a831-8a57568a466f" />
 
-
 Usage: 
-
-For your Knowledge:
-The files labeled 
+Its intended purpose is to allow users to take any generic real-life tabletop game and import it into our modular source code. In its current build, users can play a simple game of Tic-Tac-Toe. It is a baseline model for a simple tabletop simulator.
 
 Authors: Wade Poltanovage, Soo Yuan, Peter Dunbar
 
