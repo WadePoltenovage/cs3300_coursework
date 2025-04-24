@@ -22,6 +22,9 @@ If you want to only run a scene, make sure to have one selected and click the cl
 
 Usage: 
 
+For your Knowledge:
+The files labeled 
+
 Authors: Wade Poltanovage, Soo Yuan, Peter Dunbar
 
 License: Apache License Version 2.0
