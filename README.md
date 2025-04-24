@@ -6,7 +6,7 @@ Dependencies:
   - Windows System
     
 How to install & run: 
-To be able to run the following zip file in your own Godot environment, you will need to download it and extract the file to a desired location. Next, you will need to use the import button in your Godot Project Manager list, locate the folder containing the project, and select it. It is titled "playerstablemenu". After this is done, you can select the project and load it. Once inside the project, you can view and edit 
+To be able to run the following zip file in your own Godot environment, you will need to download "Player'sTable.zip" and extract the file to a desired location. Next, you will need to use the import button in your Godot Project Manager list, locate the folder containing the project, and select it. It is titled "playerstablemenu". After this is done, you can select the project and load it. Once inside the project, you can view and edit 
 Scene scripts by navigating to the file system and double-clicking on any scenes:
 <img width="518" alt="image" src="https://github.com/user-attachments/assets/59c225b4-36c5-432a-98e3-c1e6bacd48e4" />
 
