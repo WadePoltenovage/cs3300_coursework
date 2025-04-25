@@ -22,6 +22,6 @@ If you want to only run a scene, make sure to have one selected and click the cl
 Usage: 
 Its intended purpose is to allow users to take any generic real-life tabletop game and import it into our modular source code. In its current build, users can play a simple game of Tic-Tac-Toe. It is a baseline model for a simple tabletop simulator.
 
-Authors: Wade Poltanovage, Soo Yuan, Peter Dunbar
+Authors: Wade Poltanovage, Soo Yuan Kong, Peter Dunbar
 
 License: Apache License Version 2.0
